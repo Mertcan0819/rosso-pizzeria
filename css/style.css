@@ -650,15 +650,17 @@ body.cursor-label .cursor { opacity: 0; }
 }
 .hero-media { position: absolute; inset: 0; }
 .hero-img {
+  position: absolute;
+  inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: 60% 60%;
-  transform: scale(1.04);
-  animation: kenburns 26s ease-in-out infinite alternate;
+  object-position: center;
+  opacity: 0;
+  will-change: transform, opacity;
 }
-@keyframes kenburns {
-  from { transform: scale(1.04) translate(0, 0); }
-  to { transform: scale(1.14) translate(-1.5%, -1%); }
+.hero-img:first-child { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-img:first-child { transform: none !important; }
 }
 .hero-shade {
   position: absolute; inset: 0;

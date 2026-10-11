@@ -370,6 +370,22 @@ if (hasGsap) {
   gsap.set('.hero-anim', { opacity: 0, y: 30 });
   gsap.set('.hero-media', { clipPath: 'inset(0% 42% 0% 42%)' });
 
+  /* ---------- Hero arka plan: yavaş crossfade + Ken Burns ---------- */
+  const heroSlides = $$('.hero-media .hero-img');
+  if (heroSlides.length > 1 && !reduceMotion) {
+    const HERO_HOLD = 9; // bir görselin ekranda kaldığı süre (sn)
+    const HERO_FADE = 1.8; // geçiş süresi (sn)
+    let heroIdx = 0;
+    gsap.fromTo(heroSlides[0], { scale: 1 }, { scale: 1.1, duration: HERO_HOLD, ease: 'none' });
+    setInterval(() => {
+      const next = (heroIdx + 1) % heroSlides.length;
+      gsap.to(heroSlides[heroIdx], { opacity: 0, duration: HERO_FADE, ease: 'power1.inOut' });
+      gsap.fromTo(heroSlides[next], { opacity: 0, scale: 1 }, { opacity: 1, duration: HERO_FADE, ease: 'power1.inOut' });
+      gsap.fromTo(heroSlides[next], { scale: 1 }, { scale: 1.1, duration: HERO_HOLD, ease: 'none' });
+      heroIdx = next;
+    }, HERO_HOLD * 1000);
+  }
+
   function intro() {
     const tl = gsap.timeline();
     tl.to('.hero-media', { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.7, ease: 'expo.inOut' }, 0)
