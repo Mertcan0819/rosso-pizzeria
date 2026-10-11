@@ -91,7 +91,7 @@
 
     <main>
     <section class="page-hero">
-      <div class="ph-media" data-parallax-bg><img src="assets/img/rustica.jpg" alt="Odun ateşinde pişmiş pizza"></div>
+      <div class="ph-media" data-parallax-bg><img src="assets/img/rustica.jpg" alt="Odun ateşinde pişmiş pizza" decoding="async"></div>
       <div class="ph-content container">
         <nav class="breadcrumb hero-anim"><a href="index.html">Ana Sayfa</a><span>/</span>Menü</nav>
         <h1 class="h-display" data-hero-split><span class="line">La <em>Carta</em></span></h1>
@@ -113,10 +113,10 @@
     </nav>
 
     <div class="container">
-      <div class="menu-intro section" style="padding-bottom: 0; padding-top: clamp(70px, 9vw, 120px)">
+      <div class="menu-intro-section menu-intro">
         <div>
           <span class="eyebrow" data-fade>Menü · Sonbahar 2026</span>
-          <h2 class="h-2" data-split style="margin-top: 20px">Seçin, ekleyin, <em>gerisini</em> ateşe bırakın</h2>
+          <h2 class="h-2" data-split>Seçin, ekleyin, <em>gerisini</em> ateşe bırakın</h2>
         </div>
         <div class="legend" data-fade>
           <span><span class="tag v">V</span> Vejetaryen</span>
@@ -127,6 +127,9 @@
       </div>
 
       <section class="menu-section" id="antipasti">
+       <div class="menu-split">
+        <div class="ms-visual" data-fade><img src="assets/img/parmesan.jpg" alt="Tagliere Rosso şarküteri ve peynir tabağı" loading="lazy" decoding="async"></div>
+        <div class="ms-content">
         <div class="ms-head" data-fade>
           <span class="ms-num">i.</span>
           <h2><small>Başlangıçlar</small>Antipasti</h2>
@@ -170,8 +173,13 @@
             <button class="mi-add" data-add data-id="tagliere-rosso" data-name="Tagliere Rosso" data-price="560" aria-label="Tagliere Rosso sepete ekle">+</button>
           </div>
         </div>
+        </div>
+       </div>
       </section>
       <section class="menu-section" id="rosse">
+       <div class="menu-split img-right">
+        <div class="ms-visual" data-fade><img src="assets/img/diavola.jpg" alt="Diavola pizza, acı salam ve kırmızı biber yağı" loading="lazy" decoding="async"></div>
+        <div class="ms-content">
         <div class="ms-head" data-fade>
           <span class="ms-num">ii.</span>
           <h2><small>Domates soslu</small>Pizze Rosse</h2>
@@ -227,6 +235,8 @@
             <button class="mi-add" data-add data-id="nduja-e-miele" data-name="Nduja e Miele" data-price="540" aria-label="Nduja e Miele sepete ekle">+</button>
           </div>
         </div>
+        </div>
+       </div>
       </section>
       <section class="menu-section" id="bianche">
         <div class="ms-head" data-fade>
@@ -301,7 +311,7 @@
         </div>
       </section>
       <div class="chef-pick" data-fade>
-        <div class="img-frame" data-speed="0.12"><img src="assets/img/pizza-dark.jpg" alt="Tartufo Nero pizza" loading="lazy"></div>
+        <div class="img-frame" data-speed="0.12"><img src="assets/img/pizza-dark.jpg" alt="Tartufo Nero pizza" loading="lazy" decoding="async"></div>
         <div class="cp-body">
           <span class="eyebrow">Şefin Önerisi</span>
           <h2 class="h-1" data-split>Tartufo <em>Nero</em></h2>
@@ -310,6 +320,9 @@
         </div>
       </div>
       <section class="menu-section" id="pasta">
+       <div class="menu-split">
+        <div class="ms-visual" data-fade><img src="assets/img/shrimp-pasta.jpg" alt="Karides ve çeri domatesli linguine" loading="lazy" decoding="async"></div>
+        <div class="ms-content">
         <div class="ms-head" data-fade>
           <span class="ms-num">v.</span>
           <h2><small>El yapımı</small>Pasta</h2>
@@ -341,6 +354,8 @@
             <button class="mi-add" data-add data-id="tagliatelle-al-tartufo" data-name="Tagliatelle al Tartufo" data-price="620" aria-label="Tagliatelle al Tartufo sepete ekle">+</button>
           </div>
         </div>
+        </div>
+       </div>
       </section>
       <section class="menu-section" id="insalate">
         <div class="ms-head" data-fade>
@@ -460,9 +475,7 @@
       </div>
     </div>
 
-    <section class="reserve-cta" style="margin-top: clamp(90px, 12vw, 160px)">
-      <canvas class="fire" data-fire="cta"></canvas>
-      <canvas class="embers" data-embers></canvas>
+    <section class="reserve-cta reserve-cta--menu">
       <div class="container">
         <span class="eyebrow center" data-fade>Karar verdiniz mi?</span>
         <h2 class="h-display" data-split>Masanız <em>hazır</em></h2>
@@ -473,8 +486,6 @@
         </div>
       </div>
     </section>
-
-    <div class="hover-preview" aria-hidden="true"></div>
   </main>
 
   <!-- ============ FOOTER ============ -->
@@ -514,7 +525,7 @@
             <li><span>Cum – Cmt</span><span>12:00 – 00:30</span></li>
             <li><span>Pazar</span><span>12:00 – 23:00</span></li>
           </ul>
-          <h5 style="margin-top: 34px">Bülten</h5>
+          <h5>Bülten</h5>
           <form class="newsletter" data-newsletter>
             <input type="email" placeholder="E-posta adresiniz" required aria-label="E-posta adresiniz">
             <button type="submit">Katıl</button>

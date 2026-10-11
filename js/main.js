@@ -284,7 +284,7 @@ if (tWrap) {
 }
 
 /* ==========================================================================
-   Parçacık sistemi: ateş, kıvılcım, buhar
+   Parçacık sistemi: buhar (dönen pizzanın üzerinde)
    ========================================================================== */
 function makeSprite(r, g, b) {
   const c = document.createElement('canvas');
@@ -298,18 +298,15 @@ function makeSprite(r, g, b) {
   x.fillRect(0, 0, 64, 64);
   return c;
 }
-const FIRE_PALETTE = [[255, 176, 84], [238, 112, 36], [200, 58, 22], [150, 26, 16], [96, 12, 10], [48, 6, 6]].map(c => makeSprite(...c));
-const EMBER_SPRITE = makeSprite(255, 160, 70);
 const STEAM_SPRITE = makeSprite(255, 248, 240);
 
 class Particles {
-  constructor(canvas, type) {
+  constructor(canvas) {
     this.c = canvas;
     this.ctx = canvas.getContext('2d');
-    this.type = type;
     this.parts = [];
     this.t = 0;
-    this.scale = type === 'fire' ? 0.5 : Math.min(devicePixelRatio, 2);
+    this.scale = Math.min(devicePixelRatio, 2);
     this.resize();
     new ResizeObserver(() => this.resize()).observe(canvas);
     new IntersectionObserver(([e]) => {
@@ -326,39 +323,14 @@ class Particles {
   }
   spawn() {
     const { w, h } = this;
-    if (this.type === 'fire') {
-      const n = Math.ceil(w / 110);
-      for (let i = 0; i < n; i++) {
-        // Alevler ortaya ve sağa doğru yoğunlaşsın
-        const x = w * (0.5 + (Math.random() + Math.random() - 1) * 0.55);
-        this.parts.push({
-          x, y: h + 20,
-          vx: (Math.random() - 0.5) * 0.4,
-          vy: -(1.4 + Math.random() * 2.4) * (h / 320),
-          s: (24 + Math.random() * 46) * (h / 380),
-          life: 1, decay: 0.011 + Math.random() * 0.012,
-          seed: Math.random() * 100,
-        });
-      }
-    } else if (this.type === 'embers') {
-      if (Math.random() < 0.35) this.parts.push({
-        x: Math.random() * w, y: h + 5,
-        vx: (Math.random() - 0.5) * 0.6,
-        vy: -(0.5 + Math.random() * 1.4),
-        s: 1 + Math.random() * 2.2,
-        life: 1, decay: 0.002 + Math.random() * 0.004,
-        seed: Math.random() * 100,
-      });
-    } else if (this.type === 'steam') {
-      if (Math.random() < 0.25) this.parts.push({
-        x: w * (0.3 + Math.random() * 0.4), y: h,
-        vx: (Math.random() - 0.5) * 0.25,
-        vy: -(0.35 + Math.random() * 0.45),
-        s: 20 + Math.random() * 25,
-        life: 1, decay: 0.0035 + Math.random() * 0.003,
-        seed: Math.random() * 100,
-      });
-    }
+    if (Math.random() < 0.25) this.parts.push({
+      x: w * (0.3 + Math.random() * 0.4), y: h,
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: -(0.35 + Math.random() * 0.45),
+      s: 20 + Math.random() * 25,
+      life: 1, decay: 0.0035 + Math.random() * 0.003,
+      seed: Math.random() * 100,
+    });
   }
   loop() {
     if (!this.visible) { this.raf = null; return; }
@@ -367,40 +339,23 @@ class Particles {
     this.t++;
     this.spawn();
     ctx.clearRect(0, 0, w, h);
-    ctx.globalCompositeOperation = this.type === 'steam' ? 'source-over' : 'lighter';
+    ctx.globalCompositeOperation = 'source-over';
 
     for (const p of this.parts) {
       const sway = Math.sin(this.t * 0.03 + p.seed);
       p.life -= p.decay;
-      if (this.type === 'fire') {
-        p.x += p.vx + sway * 0.5;
-        p.y += p.vy;
-        p.s *= 0.988;
-        const i = Math.min(FIRE_PALETTE.length - 1, Math.floor((1 - p.life) * FIRE_PALETTE.length));
-        ctx.globalAlpha = Math.max(0, p.life) * 0.2;
-        ctx.drawImage(FIRE_PALETTE[i], p.x - p.s, p.y - p.s, p.s * 2, p.s * 2);
-      } else if (this.type === 'embers') {
-        p.x += p.vx + sway * 0.6;
-        p.y += p.vy;
-        const flicker = 0.6 + Math.sin(this.t * 0.25 + p.seed) * 0.4;
-        ctx.globalAlpha = Math.max(0, p.life) * flicker;
-        ctx.drawImage(EMBER_SPRITE, p.x - p.s * 3, p.y - p.s * 3, p.s * 6, p.s * 6);
-      } else {
-        p.x += p.vx + sway * 0.3;
-        p.y += p.vy;
-        p.s += 0.35;
-        ctx.globalAlpha = Math.sin(Math.max(0, p.life) * Math.PI) * 0.07;
-        ctx.drawImage(STEAM_SPRITE, p.x - p.s, p.y - p.s, p.s * 2, p.s * 2);
-      }
+      p.x += p.vx + sway * 0.3;
+      p.y += p.vy;
+      p.s += 0.35;
+      ctx.globalAlpha = Math.sin(Math.max(0, p.life) * Math.PI) * 0.07;
+      ctx.drawImage(STEAM_SPRITE, p.x - p.s, p.y - p.s, p.s * 2, p.s * 2);
     }
     this.parts = this.parts.filter(p => p.life > 0 && p.y > -60);
   }
 }
 
 if (!reduceMotion) {
-  $$('canvas[data-fire]').forEach(c => new Particles(c, 'fire'));
-  $$('canvas[data-embers]').forEach(c => new Particles(c, 'embers'));
-  $$('canvas[data-steam]').forEach(c => new Particles(c, 'steam'));
+  $$('canvas[data-steam]').forEach(c => new Particles(c));
 }
 
 /* ==========================================================================
@@ -413,12 +368,14 @@ if (hasGsap) {
   const heroWords = $$('[data-hero-split] .line').flatMap(splitWords);
   gsap.set(heroWords, { yPercent: 115 });
   gsap.set('.hero-anim', { opacity: 0, y: 30 });
+  gsap.set('.hero-media', { clipPath: 'inset(0% 42% 0% 42%)' });
 
   function intro() {
     const tl = gsap.timeline();
-    tl.from('.hero-media, .page-hero .ph-media', { scale: 1.25, duration: 2.4, ease: 'expo.out' }, 0)
-      .to(heroWords, { yPercent: 0, duration: 1.4, stagger: 0.07, ease: 'expo.out' }, 0.15)
-      .to('.hero-anim', { opacity: 1, y: 0, duration: 1.2, stagger: 0.12, ease: 'expo.out' }, 0.6)
+    tl.to('.hero-media', { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.7, ease: 'expo.inOut' }, 0)
+      .from('.page-hero .ph-media', { scale: 1.25, duration: 2.4, ease: 'expo.out' }, 0)
+      .to(heroWords, { yPercent: 0, duration: 1.4, stagger: 0.07, ease: 'expo.out' }, 0.35)
+      .to('.hero-anim', { opacity: 1, y: 0, duration: 1.2, stagger: 0.12, ease: 'expo.out' }, 0.75)
       .from('.header-inner > *', { y: -30, opacity: 0, duration: 1, stagger: 0.08, ease: 'expo.out' }, 0.3);
     startScroll();
     if (location.hash) setTimeout(() => scrollToEl($(location.hash), -150), 400);
@@ -524,7 +481,7 @@ if (hasGsap) {
     $$('[data-magnetic]').forEach(el => {
       el.addEventListener('mousemove', e => {
         const r = el.getBoundingClientRect();
-        gsap.to(el, { x: (e.clientX - r.left - r.width / 2) * 0.3, y: (e.clientY - r.top - r.height / 2) * 0.35, duration: 0.6, ease: 'power3' });
+        gsap.to(el, { x: (e.clientX - r.left - r.width / 2) * 0.18, y: (e.clientY - r.top - r.height / 2) * 0.2, duration: 0.6, ease: 'power3' });
       });
       el.addEventListener('mouseleave', () => gsap.to(el, { x: 0, y: 0, duration: 1, ease: 'elastic.out(1, .4)' }));
     });
@@ -618,31 +575,6 @@ if (hasGsap) {
     });
   });
 
-  /* ---------- Kayan bant (kaydırma hızına duyarlı) ---------- */
-  $$('[data-marquee]').forEach(inner => {
-    let x = 0, vel = 0, dir = 1;
-    const half = () => inner.firstElementChild.offsetWidth;
-    gsap.ticker.add(() => {
-      const v = lenis ? lenis.velocity : 0;
-      if (v) dir = v > 0 ? 1 : -1;
-      vel += (v - vel) * 0.1;
-      x -= (0.8 + Math.abs(vel) * 0.6) * dir;
-      const w = half();
-      if (x <= -w) x += w;
-      if (x > 0) x -= w;
-      gsap.set(inner, { x, skewX: gsap.utils.clamp(-8, 8, -vel * 0.4) });
-    });
-  });
-
-  // Galeri satırları zıt yönlerde kayar
-  $$('[data-gs]').forEach(row => {
-    const d = +row.dataset.gs;
-    gsap.fromTo(row, { xPercent: d < 0 ? 0 : -18 }, {
-      xPercent: d < 0 ? -18 : 0, ease: 'none',
-      scrollTrigger: { trigger: row, start: 'top bottom', end: 'bottom top', scrub: true },
-    });
-  });
-
   /* ---------- Süreç adımları ---------- */
   const pmImgs = $$('.pm-img');
   if (pmImgs.length) {
@@ -700,32 +632,6 @@ if (hasGsap) {
           bar.scrollTo({ left: tab.offsetLeft - bar.clientWidth / 2 + tab.clientWidth / 2, behavior: 'smooth' });
         },
       });
-    });
-  }
-
-  // Ürünün üzerine gelince imleci takip eden fotoğraf
-  const preview = $('.hover-preview');
-  if (preview && finePointer) {
-    const px = gsap.quickTo(preview, 'x', { duration: 0.7, ease: 'power3' });
-    const py = gsap.quickTo(preview, 'y', { duration: 0.7, ease: 'power3' });
-    const pr = gsap.quickTo(preview, 'rotation', { duration: 0.8, ease: 'power3' });
-    let lastX = 0;
-    window.addEventListener('mousemove', e => {
-      px(e.clientX + 40); py(e.clientY - 160);
-      pr(gsap.utils.clamp(-12, 12, (e.clientX - lastX) * 0.6));
-      lastX = e.clientX;
-    });
-    $$('.menu-item[data-img]').forEach(item => {
-      item.addEventListener('mouseenter', () => {
-        const img = new Image();
-        img.src = item.dataset.img;
-        img.alt = '';
-        preview.appendChild(img);
-        gsap.fromTo(img, { clipPath: 'inset(100% 0 0 0)', scale: 1.3 }, { clipPath: 'inset(0% 0 0 0)', scale: 1, duration: 0.8, ease: 'expo.out' });
-        while (preview.children.length > 3) preview.firstElementChild.remove();
-        preview.classList.add('show');
-      });
-      item.addEventListener('mouseleave', () => preview.classList.remove('show'));
     });
   }
 
