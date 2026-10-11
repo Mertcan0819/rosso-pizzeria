@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROSSO — Pizzeria Napoletana | Kadıköy</title>
+  <meta name="description" content="ROSSO, Kadıköy'de 450°C odun ateşinde 90 saniyede pişen, 48 saat mayalanmış hamurla hazırlanan Napoli usulü pizzalar sunar.">
+  <meta name="theme-color" content="#0a0808">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a0808'/%3E%3Ctext x='32' y='46' font-family='Georgia,serif' font-size='42' text-anchor='middle' fill='%23a8161d'%3ER%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body data-page="home">
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"><span></span></div>
+
+  <div class="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <div class="loader-logo"><span>R</span><span>O</span><span>S</span><span>S</span><span>O</span></div>
+      <div class="loader-sub" lang="it">Pizzeria Napoletana</div>
+      <div class="loader-line"><i></i></div>
+    </div>
+    <div class="loader-count">0</div>
+  </div>
+
+  <div class="transition" aria-hidden="true">
+    <div class="t-layer t-red"></div>
+    <div class="t-layer t-black"><span class="t-logo">ROSSO</span></div>
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="ROSSO ana sayfa">
+        <span class="logo-mark">ROSS<b>O</b></span>
+        <span class="logo-sub" lang="it">Pizzeria Napoletana</span>
+      </a>
+      <nav class="nav" aria-label="Ana menü">
+        <a href="index.html" class="is-current">Ana Sayfa</a>
+        <a href="menu.html">Menü</a>
+        <a href="hikayemiz.html">Hikayemiz</a>
+        <a href="rezervasyon.html">Rezervasyon</a>
+      </nav>
+      <div class="header-actions">
+        <span class="status" data-status><i></i><em>—</em></span>
+        <button class="cart-btn" data-cart-open aria-label="Sepeti aç" data-magnetic>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+          <span class="cart-count">0</span>
+        </button>
+        <a href="rezervasyon.html" class="btn btn-sm" data-magnetic><span class="btn-text" data-text="Masa Ayırt"><span>Masa Ayırt</span></span></a>
+        <button class="menu-toggle" aria-label="Menüyü aç"><i></i><i></i></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu">
+    <nav class="mm-links">
+      <a href="index.html"><span>Ana Sayfa</span><small>01</small></a>
+      <a href="menu.html"><span>Menü</span><small>02</small></a>
+      <a href="hikayemiz.html"><span>Hikayemiz</span><small>03</small></a>
+      <a href="rezervasyon.html"><span>Rezervasyon</span><small>04</small></a>
+    </nav>
+    <div class="mm-foot">
+      <span>Moda Cad. No:12, Kadıköy</span>
+      <a href="tel:+902160000000">0216 000 00 00</a>
+    </div>
+  </div>
+
+  <!-- ============ SEPET ============ -->
+  <aside class="cart-drawer" aria-label="Sepet">
+    <div class="cd-backdrop" data-cart-close></div>
+    <div class="cd-panel">
+      <div class="cd-head">
+        <h3>Sepetiniz</h3>
+        <button class="cd-close" data-cart-close aria-label="Sepeti kapat">✕</button>
+      </div>
+      <div class="cd-items" data-lenis-prevent></div>
+      <div class="cd-foot">
+        <div class="cd-total"><span>Toplam</span><strong data-cart-total>₺0</strong></div>
+        <p class="cd-note">Kadıköy, Moda ve Fenerbahçe'ye 35 dakikada sıcak teslimat.</p>
+        <a href="#" class="btn" data-cart-checkout target="_blank" rel="noopener"><span class="btn-text" data-text="WhatsApp ile Sipariş"><span>WhatsApp ile Sipariş</span></span></a>
+      </div>
+    </div>
+  </aside>
+  <div class="toast" role="status" aria-live="polite"></div>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="hero-media">
+        <img class="hero-img" src="assets/img/hero.jpg" alt="Odun fırınının önünde dumanı tüten Napoli pizzası">
+      </div>
+      <div class="hero-shade"></div>
+      <div class="hero-glow"></div>
+      <canvas class="fire" data-fire="hero"></canvas>
+      <canvas class="embers" data-embers></canvas>
+
+      <div class="hero-content container">
+        <span class="eyebrow hero-anim">Kadıköy · Dal 2012</span>
+        <h1 class="h-display hero-title" data-hero-split>
+          <span class="line">Ateşin</span>
+          <span class="line indent"><em>ustalığı</em>,</span>
+          <span class="line">Napoli'nin ruhu</span>
+        </h1>
+        <p class="lead hero-lead hero-anim">48 saat dinlenmiş hamur, San Marzano domates ve 450°C'lik meşe ateşi. Doksan saniyede pişen, bir ömür hatırlanan pizza.</p>
+        <div class="hero-actions hero-anim">
+          <a href="menu.html" class="btn" data-magnetic>
+            <span class="btn-text" data-text="Menüyü Keşfet"><span>Menüyü Keşfet</span></span>
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+          </a>
+          <a href="rezervasyon.html" class="btn btn-outline" data-magnetic><span class="btn-text" data-text="Masa Ayırt"><span>Masa Ayırt</span></span></a>
+        </div>
+      </div>
+
+      <div class="hero-bottom hero-anim">
+        <div class="container">
+          <div class="hb-item"><strong>450°C</strong> Meşe ateşi</div>
+          <div class="hb-item hide-sm"><strong>48 saat</strong> Doğal mayalanma</div>
+          <div class="hb-item hide-sm"><strong>90 sn</strong> Pişme süresi</div>
+          <div class="scroll-cue"><span>Kaydır</span><i></i></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MANİFESTO ============ -->
+    <section class="manifesto">
+      <div class="container">
+        <div class="mf-img a img-frame" data-speed="-0.15"><img src="assets/img/bread-wheat.jpg" alt="Buğday başakları ve ekşi mayalı ekmek" loading="lazy"></div>
+        <div class="mf-img b img-frame" data-speed="0.2"><img src="assets/img/tomatoes.jpg" alt="Taze kırmızı domatesler" loading="lazy"></div>
+        <div style="text-align:center"><span class="eyebrow center" data-fade>Felsefemiz</span></div>
+        <div class="ornament" data-fade><span></span></div>
+        <p class="manifesto-text" data-fill>Un, su, tuz, maya ve <em>zaman.</em> Gerisini ateşe bırakıyoruz — çünkü gerçek lezzet acele etmez.</p>
+        <div class="mf-sign" data-fade>
+          <strong>Marco Esposito</strong>
+          <span>Kurucu & Pizzaiolo</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ANATOMİ ============ -->
+    <section class="section anatomy">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow center" data-fade>Bir Margherita'nın Anatomisi</span>
+          <h2 class="h-1" data-split>Dört malzeme, <em>tek</em> kusursuzluk</h2>
+        </div>
+
+        <div class="anatomy-stage">
+          <div class="disk-wrap">
+            <div class="disk-shadow"></div>
+            <div class="disk-ring"></div>
+            <div class="disk-orbit"><div class="disk-ring"></div></div>
+            <img class="disk" src="assets/img/pizza-disk.webp" alt="Üstten görünüm Margherita pizza: domates, mozzarella ve fesleğen" loading="lazy">
+            <canvas class="steam" data-steam></canvas>
+          </div>
+
+          <div class="callouts-m">
+            <div class="callout c1" data-callout>
+              <svg viewBox="0 0 150 90"><path d="M0 1 H70 L150 89"/><circle cx="150" cy="89" r="3"/></svg>
+              <span class="co-num">i.</span>
+              <h4>Hamur</h4>
+              <p>Tip 00 un, %70 hidrasyon, 48 saat soğuk fermantasyon. Hafif, havadar, leopar benekli kenarlar.</p>
+            </div>
+            <div class="callout c2" data-callout>
+              <svg viewBox="0 0 150 70"><path d="M150 1 H80 L0 69"/><circle cx="0" cy="69" r="3"/></svg>
+              <span class="co-num">ii.</span>
+              <h4>San Marzano</h4>
+              <p>Vezüv yamaçlarından DOP domatesler; elle ezilir, yalnızca deniz tuzu eklenir.</p>
+            </div>
+            <div class="callout c3" data-callout>
+              <svg viewBox="0 0 150 60"><path d="M0 59 H70 L150 1"/><circle cx="150" cy="1" r="3"/></svg>
+              <span class="co-num">iii.</span>
+              <h4>Fior di Latte</h4>
+              <p>Her sabah taze gelen inek sütü mozzarella. Fırında erir, ama asla yağ bırakmaz.</p>
+            </div>
+            <div class="callout c4" data-callout>
+              <svg viewBox="0 0 150 80"><path d="M150 79 H80 L0 1"/><circle cx="0" cy="1" r="3"/></svg>
+              <span class="co-num">iv.</span>
+              <h4>Fesleğen & Zeytinyağı</h4>
+              <p>Fırından çıkar çıkmaz eklenen taze fesleğen ve soğuk sıkım sızma zeytinyağı.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ İMZA PİZZALAR ============ -->
+    <section class="signature" id="imza">
+      <div class="sig-pin">
+        <div class="sig-track">
+          <div class="sig-intro">
+            <span class="eyebrow">İmza Pizzalar</span>
+            <h2 class="h-1" data-split>Fırının <em>yıldızları</em></h2>
+            <p class="lead">Her biri yıllarca rafine edilmiş tarifler. Mevsimine göre değişen malzemeler, değişmeyen bir tutku.</p>
+            <a href="menu.html" class="link-line">Tüm menüyü gör →</a>
+          </div>
+
+          <article class="sig-card">
+            <div class="sig-img" data-cursor="Ekle"><span class="sig-no">01</span><img src="assets/img/margherita.jpg" alt="Margherita pizza" loading="lazy"></div>
+            <div class="sig-body">
+              <h3>Margherita</h3>
+              <p>San Marzano, fior di latte, taze fesleğen, sızma zeytinyağı.</p>
+              <div class="sig-foot"><span class="price">₺420</span><button class="add-btn" data-add data-id="margherita" data-name="Margherita" data-price="420">Ekle<i>+</i></button></div>
+            </div>
+          </article>
+
+          <article class="sig-card">
+            <div class="sig-img" data-cursor="Ekle"><span class="sig-no">02</span><span class="sig-badge">Acılı</span><img src="assets/img/diavola.jpg" alt="Diavola pizza" loading="lazy"></div>
+            <div class="sig-body">
+              <h3>Diavola</h3>
+              <p>Calabria acı salamı, fior di latte, kırmızı biber yağı, bal damlası.</p>
+              <div class="sig-foot"><span class="price">₺490</span><button class="add-btn" data-add data-id="diavola" data-name="Diavola" data-price="490">Ekle<i>+</i></button></div>
+            </div>
+          </article>
+
+          <article class="sig-card">
+            <div class="sig-img" data-cursor="Ekle"><span class="sig-no">03</span><span class="sig-badge">Şefin Seçimi</span><img src="assets/img/pizza-dark.jpg" alt="Tartufo pizza" loading="lazy"></div>
+            <div class="sig-body">
+              <h3>Tartufo Nero</h3>
+              <p>Siyah trüf kreması, orman mantarları, fior di latte, 24 ay parmesan.</p>
+              <div class="sig-foot"><span class="price">₺690</span><button class="add-btn" data-add data-id="tartufo-nero" data-name="Tartufo Nero" data-price="690">Ekle<i>+</i></button></div>
+            </div>
+          </article>
+
+          <article class="sig-card">
+            <div class="sig-img" data-cursor="Ekle"><span class="sig-no">04</span><img src="assets/img/ortolana.jpg" alt="Ortolana sebzeli pizza" loading="lazy"></div>
+            <div class="sig-body">
+              <h3>Ortolana</h3>
+              <p>Közlenmiş mevsim sebzeleri, çeri domates, fesleğen pesto, ricotta.</p>
+              <div class="sig-foot"><span class="price">₺460</span><button class="add-btn" data-add data-id="ortolana" data-name="Ortolana" data-price="460">Ekle<i>+</i></button></div>
+            </div>
+          </article>
+
+          <article class="sig-card">
+            <div class="sig-img" data-cursor="Ekle"><span class="sig-no">05</span><span class="sig-badge">Yeni</span><img src="assets/img/pizza-steam.jpg" alt="Nduja ve bal pizza" loading="lazy"></div>
+            <div class="sig-body">
+              <h3>Nduja e Miele</h3>
+              <p>Sürülebilir acı nduja, füme provola, kestane balı, taze kekik.</p>
+              <div class="sig-foot"><span class="price">₺540</span><button class="add-btn" data-add data-id="nduja-e-miele" data-name="Nduja e Miele" data-price="540">Ekle<i>+</i></button></div>
+            </div>
+          </article>
+
+          <article class="sig-card">
+            <div class="sig-img" data-cursor="Ekle"><span class="sig-no">06</span><img src="assets/img/cheese-wood.jpg" alt="Dört peynirli pizza" loading="lazy"></div>
+            <div class="sig-body">
+              <h3>Quattro Formaggi</h3>
+              <p>Fior di latte, gorgonzola dolce, taleggio ve parmigiano reggiano.</p>
+              <div class="sig-foot"><span class="price">₺540</span><button class="add-btn" data-add data-id="quattro-formaggi" data-name="Quattro Formaggi" data-price="540">Ekle<i>+</i></button></div>
+            </div>
+          </article>
+        </div>
+        <div class="sig-progress"><i></i></div>
+      </div>
+    </section>
+
+    <!-- ============ KAYAN BANT ============ -->
+    <div class="marquee-band" style="margin-top: clamp(90px, 12vw, 160px)">
+      <div class="marquee-inner" data-marquee>
+        <span>Pizza Napoletana <b></b> <em>Odun Ateşi</em> <b></b> San Marzano <b></b> <em>48 Saat</em> <b></b> Fior di Latte <b></b></span>
+        <span>Pizza Napoletana <b></b> <em>Odun Ateşi</em> <b></b> San Marzano <b></b> <em>48 Saat</em> <b></b> Fior di Latte <b></b></span>
+      </div>
+    </div>
+
+    <!-- ============ SÜREÇ ============ -->
+    <section class="section process">
+      <div class="container">
+        <div class="section-head split">
+          <div>
+            <span class="eyebrow" data-fade>Ustalık</span>
+            <h2 class="h-1" data-split>Hamurdan <em>ateşe</em></h2>
+          </div>
+          <p class="lead" data-fade>Hiçbir adımı atlamıyoruz, hiçbirini hızlandırmıyoruz. Her pizza, aynı dört aşamadan özenle geçer.</p>
+        </div>
+
+        <div class="process-grid">
+          <div class="process-media">
+            <div class="pm-img"><img src="assets/img/bread-wheat.jpg" alt="Un ve buğday"></div>
+            <div class="pm-img"><img src="assets/img/tomatoes.jpg" alt="San Marzano domatesleri"></div>
+            <div class="pm-img"><img src="assets/img/cheese-pull.jpg" alt="Uzayan mozzarella"></div>
+            <div class="pm-img"><img src="assets/img/chef-fire.jpg" alt="Ateşin başında şef"></div>
+            <div class="pm-counter"><span class="pm-current"><span>01</span></span><small>/ 04</small></div>
+          </div>
+
+          <div class="process-steps">
+            <div class="p-step">
+              <div class="p-img-mobile"><img src="assets/img/bread-wheat.jpg" alt="" loading="lazy"></div>
+              <span class="p-num">Adım i.</span>
+              <h3 class="h-2">Hamur</h3>
+              <p>Napoli'den gelen Tip 00 un, kaynak suyu ve deniz tuzu. Elle yoğrulan hamur, 4°C'de tam 48 saat dinlenir; böylece hafif, sindirimi kolay ve aromatik olur.</p>
+              <ul><li>%70 hidrasyon</li><li>Doğal ekşi maya (lievito madre)</li><li>Her top tek tek elle şekillendirilir</li></ul>
+            </div>
+            <div class="p-step">
+              <div class="p-img-mobile"><img src="assets/img/tomatoes.jpg" alt="" loading="lazy"></div>
+              <span class="p-num">Adım ii.</span>
+              <h3 class="h-2">Sos</h3>
+              <p>Pişirilmeyen, işlenmeyen, sadece elle ezilen San Marzano DOP domatesleri. Tatlı, hafif asidik ve gerçek.</p>
+              <ul><li>Vezüv volkanik toprağı</li><li>Yalnızca deniz tuzu</li><li>Şeker ve koruyucu yok</li></ul>
+            </div>
+            <div class="p-step">
+              <div class="p-img-mobile"><img src="assets/img/cheese-pull.jpg" alt="" loading="lazy"></div>
+              <span class="p-num">Adım iii.</span>
+              <h3 class="h-2">Malzeme</h3>
+              <p>Her sabah taze gelen fior di latte, İtalya'dan getirilen şarküteri ve yerel üreticilerden mevsim sebzeleri.</p>
+              <ul><li>Günlük taze mozzarella</li><li>24 ay olgunlaşmış parmigiano</li><li>Ayvalık sızma zeytinyağı</li></ul>
+            </div>
+            <div class="p-step">
+              <div class="p-img-mobile"><img src="assets/img/chef-fire.jpg" alt="" loading="lazy"></div>
+              <span class="p-num">Adım iv.</span>
+              <h3 class="h-2">Ateş</h3>
+              <p>Napoli'den getirilen tuğlalarla örülmüş fırınımız meşe odunuyla 450°C'ye ulaşır. Pizza 90 saniyede, sürekli çevrilerek pişer.</p>
+              <ul><li>Meşe ve gürgen odunu</li><li>Leopar benekli cornicione</li><li>Masaya 60 saniyede</li></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ İSTATİSTİK ============ -->
+    <section class="stats-band">
+      <div class="stats-bg" data-parallax-bg><img src="assets/img/cheese-pull.jpg" alt="" loading="lazy"></div>
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow" data-fade>Rakamlarla Rosso</span>
+          <h2 class="h-2" data-split>Sayılar <em>yalan</em> söylemez</h2>
+        </div>
+        <div class="stats-grid" data-stagger>
+          <div class="stat"><span class="stat-num" data-count="450">0</span><span class="stat-unit">°C</span><div class="stat-label">Fırın sıcaklığı</div></div>
+          <div class="stat"><span class="stat-num" data-count="48">0</span><span class="stat-unit">saat</span><div class="stat-label">Hamur dinlenmesi</div></div>
+          <div class="stat"><span class="stat-num" data-count="1200">0</span><span class="stat-unit">+</span><div class="stat-label">Haftalık pizza</div></div>
+          <div class="stat"><span class="stat-num" data-count="14">0</span><span class="stat-unit">yıl</span><div class="stat-label">Napoli geleneği</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MENÜYÜ KEŞFET ============ -->
+    <section class="section explore">
+      <div class="container">
+        <div class="section-head split">
+          <div>
+            <span class="eyebrow" data-fade>Menü</span>
+            <h2 class="h-1" data-split>Sadece <em>pizza</em> değil</h2>
+          </div>
+          <a href="menu.html" class="link-line" data-fade>Tam menü →</a>
+        </div>
+        <div class="explore-grid" data-stagger>
+          <a href="menu.html#antipasti" class="explore-card" data-cursor="Keşfet">
+            <img src="assets/img/garlic-rolls.jpg" alt="Sarımsaklı ekmek topları" loading="lazy">
+            <div class="ec-body"><small>i.</small><h3>Antipasti</h3><span>Başlangıçlar →</span></div>
+          </a>
+          <a href="menu.html#pasta" class="explore-card" data-cursor="Keşfet">
+            <img src="assets/img/spaghetti.jpg" alt="Spagetti" loading="lazy">
+            <div class="ec-body"><small>ii.</small><h3>Pasta</h3><span>El yapımı makarnalar →</span></div>
+          </a>
+          <a href="menu.html#dolci" class="explore-card" data-cursor="Keşfet">
+            <img src="assets/img/tiramisu.jpg" alt="Tiramisu" loading="lazy">
+            <div class="ec-body"><small>iii.</small><h3>Dolci</h3><span>Tatlılar →</span></div>
+          </a>
+          <a href="menu.html#bevande" class="explore-card" data-cursor="Keşfet">
+            <img src="assets/img/cocktail.jpg" alt="Kokteyl" loading="lazy">
+            <div class="ec-body"><small>iv.</small><h3>Bevande</h3><span>Şarap & kokteyl →</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DENEYİM ============ -->
+    <section class="section experience" style="padding-top: 0">
+      <div class="container">
+        <div class="experience-grid">
+          <div class="exp-media">
+            <div class="img-frame main" data-reveal data-speed="0.12"><img src="assets/img/interior.jpg" alt="Loş ışıklı restoran salonu" loading="lazy"></div>
+            <div class="img-frame small" data-reveal><img src="assets/img/wine.jpg" alt="Kırmızı şarap kadehleri" loading="lazy"></div>
+            <div class="exp-badge" aria-hidden="true">
+              <svg viewBox="0 0 130 130">
+                <defs><path id="circ" d="M65,65 m-50,0 a50,50 0 1,1 100,0 a50,50 0 1,1 -100,0"/></defs>
+                <text><textPath href="#circ">Masa ayırt · Akşam yemeği · Özel davet ·</textPath></text>
+              </svg>
+              <div class="core">R</div>
+            </div>
+          </div>
+          <div>
+            <span class="eyebrow" data-fade>Deneyim</span>
+            <h2 class="h-1" data-split style="margin-top: 22px">Loş ışık, <em>sıcak</em> ateş</h2>
+            <p class="lead" data-fade style="margin-top: 24px">Açık mutfağımızda pizzaiolo'larımızı izlerken, özenle seçilmiş İtalyan şaraplarıyla akşamınızın tadını çıkarın.</p>
+            <ul class="exp-list" data-stagger>
+              <li><b>i.</b><div><strong>Açık Mutfak</strong><span>Fırının hemen karşısında, şefin masası.</span></div></li>
+              <li><b>ii.</b><div><strong>Şarap Mahzeni</strong><span>Campania ve Toskana'dan 60+ etiket.</span></div></li>
+              <li><b>iii.</b><div><strong>Özel Davetler</strong><span>40 kişiye kadar özel salon kiralama.</span></div></li>
+            </ul>
+            <a href="rezervasyon.html" class="btn" data-magnetic data-fade><span class="btn-text" data-text="Rezervasyon Yap"><span>Rezervasyon Yap</span></span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ YORUMLAR ============ -->
+    <section class="section testimonials">
+      <div class="container">
+        <div class="t-wrap" data-testimonials>
+          <span class="eyebrow center">Misafirlerimiz</span>
+          <div class="t-slides">
+            <div class="t-slide is-active">
+              <div class="t-stars">★★★★★</div>
+              <blockquote>“İstanbul'da yediğim en Napoli'ye yakın pizza. Kenarları bulut gibi, sosu ise tek kelimeyle dürüst.”</blockquote>
+              <cite><strong>Elif Karaca</strong><span>Yemek yazarı</span></cite>
+            </div>
+            <div class="t-slide">
+              <div class="t-stars">★★★★★</div>
+              <blockquote>“Diavola'daki bal dokunuşu dahiyane. Atmosfer, servis, şarap listesi... her şey yerli yerinde.”</blockquote>
+              <cite><strong>Burak Tunç</strong><span>Düzenli misafir</span></cite>
+            </div>
+            <div class="t-slide">
+              <div class="t-stars">★★★★★</div>
+              <blockquote>“Ateşin sesi, fırından yükselen koku ve o ilk ısırık. Pizza yemekten çok bir ritüel.”</blockquote>
+              <cite><strong>Selin Aydın</strong><span>Google yorumu</span></cite>
+            </div>
+          </div>
+          <div class="t-controls">
+            <button class="t-arrow" data-t-prev aria-label="Önceki yorum"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 12H4M10 6l-6 6 6 6"/></svg></button>
+            <div class="t-bars"><i></i><i></i><i></i></div>
+            <button class="t-arrow" data-t-next aria-label="Sonraki yorum"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12h16M14 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+        <div class="rating-row" data-stagger>
+          <div><strong>4.9</strong><span>Google · 2.300+ yorum</span></div>
+          <div><strong>4.8</strong><span lang="en">Tripadvisor</span></div>
+          <div><strong>%97</strong><span>Tekrar gelen misafir</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ GALERİ ŞERİDİ ============ -->
+    <section class="gallery-strip">
+      <div class="container">
+        <div class="section-head split">
+          <div>
+            <span class="eyebrow" data-fade>@rossopizzeria</span>
+            <h2 class="h-2" data-split>Fırından <em>kareler</em></h2>
+          </div>
+          <a href="#" class="link-line" data-fade>Instagram'da takip et →</a>
+        </div>
+      </div>
+      <div class="gs-row" data-gs="-1">
+        <div class="gs-item"><img src="assets/img/rustica.jpg" alt="" loading="lazy"></div>
+        <div class="gs-item tall"><img src="assets/img/slice-hand.jpg" alt="" loading="lazy"></div>
+        <div class="gs-item"><img src="assets/img/interior-dark.jpg" alt="" loading="lazy"></div>
+        <div class="gs-item"><img src="assets/img/pan-pizza.jpg" alt="" loading="lazy"></div>
+        <div class="gs-item tall"><img src="assets/img/cocktail-dark.jpg" alt="" loading="lazy"></div>
+        <div class="gs-item"><img src="assets/img/pizza-tomatoes.jpg" alt="" loading="lazy"></div>
+        <div class="gs-item"><img src="assets/img/guests.jpg" alt="" loading="lazy"></div>
+      </div>
+      <div class="gs-row" data-gs="1">
+        <div class="gs-item tall"><img src="assets/img/verde.jpg" alt="" loading="lazy"></div>
+        <div class="gs-item"><img src="assets/img/shrimp-pasta.jpg" alt="" loading="lazy"></div>
+        <div class="gs-item"><img src="assets/img/pizza-plate.jpg" alt="" loading="lazy"></div>
+        <div class="gs-item tall"><img src="assets/img/dessert.jpg" alt="" loading="lazy"></div>
+        <div class="gs-item"><img src="assets/img/salame-olive.jpg" alt="" loading="lazy"></div>
+        <div class="gs-item"><img src="assets/img/caprese.jpg" alt="" loading="lazy"></div>
+        <div class="gs-item tall"><img src="assets/img/gelato.jpg" alt="" loading="lazy"></div>
+      </div>
+    </section>
+
+    <!-- ============ REZERVASYON ÇAĞRISI ============ -->
+    <section class="reserve-cta">
+      <canvas class="fire" data-fire="cta"></canvas>
+      <canvas class="embers" data-embers></canvas>
+      <div class="container">
+        <span class="eyebrow center" data-fade>Bu akşam</span>
+        <h2 class="h-display" data-split>Ateş <em>yanıyor</em></h2>
+        <p class="lead" data-fade>Masanızı ayırtın ya da sıcacık pizzanız kapınıza gelsin.</p>
+        <div class="actions" data-fade>
+          <a href="rezervasyon.html" class="btn" data-magnetic><span class="btn-text" data-text="Masa Ayırt"><span>Masa Ayırt</span></span></a>
+          <a href="menu.html" class="btn btn-outline" data-magnetic><span class="btn-text" data-text="Online Sipariş"><span>Online Sipariş</span></span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="f-about">
+          <a href="index.html" class="logo"><span class="logo-mark">ROSS<b>O</b></span><span class="logo-sub" lang="it">Pizzeria Napoletana</span></a>
+          <p>Napoli'nin dar sokaklarından Kadıköy'e uzanan bir ateş hikayesi. 2012'den beri, her gün, aynı tutkuyla.</p>
+          <div class="socials">
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+            <a href="#" aria-label="WhatsApp" data-wa-link><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.8L4 20Z"/><path d="M9 9.5c.5 2 2.5 4 4.5 4.5l1-1.2 1.8.8c-.2 1.3-1.2 2-2.3 1.9C11 15.2 8.8 13 8.5 10.2 8.4 9.1 9.1 8.1 10.4 7.9l.8 1.8L10 10.7"/></svg></a>
+            <a href="tel:+902160000000" aria-label="Telefon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h5>Keşfet</h5>
+          <ul>
+            <li><a href="menu.html">Menü</a></li>
+            <li><a href="hikayemiz.html">Hikayemiz</a></li>
+            <li><a href="rezervasyon.html">Rezervasyon</a></li>
+            <li><a href="rezervasyon.html#ozel-davet">Özel Davetler</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Ziyaret</h5>
+          <ul>
+            <li>Moda Cad. No:12<br>Kadıköy / İstanbul</li>
+            <li><a href="tel:+902160000000">0216 000 00 00</a></li>
+            <li><a href="mailto:merhaba@rossopizzeria.com">merhaba@rossopizzeria.com</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Saatler</h5>
+          <ul class="f-hours">
+            <li><span>Pzt – Per</span><span>12:00 – 23:00</span></li>
+            <li><span>Cum – Cmt</span><span>12:00 – 00:30</span></li>
+            <li><span>Pazar</span><span>12:00 – 23:00</span></li>
+          </ul>
+          <h5 style="margin-top: 34px">Bülten</h5>
+          <form class="newsletter" data-newsletter>
+            <input type="email" placeholder="E-posta adresiniz" required aria-label="E-posta adresiniz">
+            <button type="submit">Katıl</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="footer-word" aria-hidden="true">ROSSO</div>
+    <div class="container">
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> Rosso Pizzeria Napoletana. Tüm hakları saklıdır.</span>
+        <span>Ateşle ve sevgiyle yapıldı.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

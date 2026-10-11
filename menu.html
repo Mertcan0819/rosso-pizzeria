@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menü — ROSSO Pizzeria Napoletana</title>
+  <meta name="description" content="ROSSO menüsü: Napoli usulü odun ateşinde pizzalar, antipasti, el yapımı makarnalar, İtalyan tatlıları ve şaraplar.">
+  <meta name="theme-color" content="#0a0808">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a0808'/%3E%3Ctext x='32' y='46' font-family='Georgia,serif' font-size='42' text-anchor='middle' fill='%23a8161d'%3ER%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body data-page="menu">
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"><span></span></div>
+
+  <div class="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <div class="loader-logo"><span>R</span><span>O</span><span>S</span><span>S</span><span>O</span></div>
+      <div class="loader-sub" lang="it">Pizzeria Napoletana</div>
+      <div class="loader-line"><i></i></div>
+    </div>
+    <div class="loader-count">0</div>
+  </div>
+
+  <div class="transition" aria-hidden="true">
+    <div class="t-layer t-red"></div>
+    <div class="t-layer t-black"><span class="t-logo">ROSSO</span></div>
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="ROSSO ana sayfa">
+        <span class="logo-mark">ROSS<b>O</b></span>
+        <span class="logo-sub" lang="it">Pizzeria Napoletana</span>
+      </a>
+      <nav class="nav" aria-label="Ana menü">
+        <a href="index.html">Ana Sayfa</a>
+        <a href="menu.html" class="is-current">Menü</a>
+        <a href="hikayemiz.html">Hikayemiz</a>
+        <a href="rezervasyon.html">Rezervasyon</a>
+      </nav>
+      <div class="header-actions">
+        <span class="status" data-status><i></i><em>—</em></span>
+        <button class="cart-btn" data-cart-open aria-label="Sepeti aç" data-magnetic>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+          <span class="cart-count">0</span>
+        </button>
+        <a href="rezervasyon.html" class="btn btn-sm" data-magnetic><span class="btn-text" data-text="Masa Ayırt"><span>Masa Ayırt</span></span></a>
+        <button class="menu-toggle" aria-label="Menüyü aç"><i></i><i></i></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu">
+    <nav class="mm-links">
+      <a href="index.html"><span>Ana Sayfa</span><small>01</small></a>
+      <a href="menu.html"><span>Menü</span><small>02</small></a>
+      <a href="hikayemiz.html"><span>Hikayemiz</span><small>03</small></a>
+      <a href="rezervasyon.html"><span>Rezervasyon</span><small>04</small></a>
+    </nav>
+    <div class="mm-foot">
+      <span>Moda Cad. No:12, Kadıköy</span>
+      <a href="tel:+902160000000">0216 000 00 00</a>
+    </div>
+  </div>
+
+  <!-- ============ SEPET ============ -->
+  <aside class="cart-drawer" aria-label="Sepet">
+    <div class="cd-backdrop" data-cart-close></div>
+    <div class="cd-panel">
+      <div class="cd-head">
+        <h3>Sepetiniz</h3>
+        <button class="cd-close" data-cart-close aria-label="Sepeti kapat">✕</button>
+      </div>
+      <div class="cd-items" data-lenis-prevent></div>
+      <div class="cd-foot">
+        <div class="cd-total"><span>Toplam</span><strong data-cart-total>₺0</strong></div>
+        <p class="cd-note">Kadıköy, Moda ve Fenerbahçe'ye 35 dakikada sıcak teslimat.</p>
+        <a href="#" class="btn" data-cart-checkout target="_blank" rel="noopener"><span class="btn-text" data-text="WhatsApp ile Sipariş"><span>WhatsApp ile Sipariş</span></span></a>
+      </div>
+    </div>
+  </aside>
+  <div class="toast" role="status" aria-live="polite"></div>
+
+    <main>
+    <section class="page-hero">
+      <div class="ph-media" data-parallax-bg><img src="assets/img/rustica.jpg" alt="Odun ateşinde pişmiş pizza"></div>
+      <div class="ph-content container">
+        <nav class="breadcrumb hero-anim"><a href="index.html">Ana Sayfa</a><span>/</span>Menü</nav>
+        <h1 class="h-display" data-hero-split><span class="line">La <em>Carta</em></span></h1>
+        <p class="lead hero-anim">Napoli geleneğine sadık, mevsime göre yenilenen menümüz. Tüm pizzalar 30 cm, odun ateşinde 90 saniyede pişer.</p>
+      </div>
+    </section>
+
+    <nav class="menu-nav" aria-label="Menü kategorileri">
+      <div class="mn-inner">
+      <a href="#antipasti">Antipasti</a>
+      <a href="#rosse">Pizze Rosse</a>
+      <a href="#bianche">Pizze Bianche</a>
+      <a href="#speciali">Speciali</a>
+      <a href="#pasta">Pasta</a>
+      <a href="#insalate">Insalate</a>
+      <a href="#dolci">Dolci</a>
+      <a href="#bevande">Bevande</a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="menu-intro section" style="padding-bottom: 0; padding-top: clamp(70px, 9vw, 120px)">
+        <div>
+          <span class="eyebrow" data-fade>Menü · Sonbahar 2026</span>
+          <h2 class="h-2" data-split style="margin-top: 20px">Seçin, ekleyin, <em>gerisini</em> ateşe bırakın</h2>
+        </div>
+        <div class="legend" data-fade>
+          <span><span class="tag v">V</span> Vejetaryen</span>
+          <span><span class="tag hot">🌶</span> Acılı</span>
+          <span><span class="tag chef">Şef</span> Şefin önerisi</span>
+          <span><span class="tag new">Yeni</span> Yeni</span>
+        </div>
+      </div>
+
+      <section class="menu-section" id="antipasti">
+        <div class="ms-head" data-fade>
+          <span class="ms-num">i.</span>
+          <h2><small>Başlangıçlar</small>Antipasti</h2>
+          <p>Masayı açan, paylaşmalık küçük lezzetler.</p>
+        </div>
+        <div class="menu-list" data-stagger>
+          <div class="menu-item" data-img="assets/img/garlic-rolls.jpg">
+            <div class="mi-title"><h3>Pane all&#x27;Aglio</h3><span class="tag v" title="Vejetaryen">V</span></div>
+            <span class="mi-price">₺220</span>
+            <p class="mi-desc">Pizza hamurundan sarımsaklı, tereyağlı ekmek topları; maydanoz ve parmesan.</p>
+            <button class="mi-add" data-add data-id="pane-all-aglio" data-name="Pane all&#x27;Aglio" data-price="220" aria-label="Pane all&#x27;Aglio sepete ekle">+</button>
+          </div>
+          <div class="menu-item" data-img="assets/img/caprese.jpg">
+            <div class="mi-title"><h3>Burrata e Pomodorini</h3><span class="tag v" title="Vejetaryen">V</span><span class="tag chef" title="Şefin önerisi">Şef</span></div>
+            <span class="mi-price">₺420</span>
+            <p class="mi-desc">Puglia burratası, közlenmiş çeri domates, fesleğen yağı, ekşi mayalı ekmek.</p>
+            <button class="mi-add" data-add data-id="burrata-e-pomodorini" data-name="Burrata e Pomodorini" data-price="420" aria-label="Burrata e Pomodorini sepete ekle">+</button>
+          </div>
+          <div class="menu-item" data-img="assets/img/pizza-tomatoes.jpg">
+            <div class="mi-title"><h3>Bruschetta Classica</h3><span class="tag v" title="Vejetaryen">V</span></div>
+            <span class="mi-price">₺260</span>
+            <p class="mi-desc">Kızarmış köy ekmeği, doğranmış domates, sarımsak, fesleğen, zeytinyağı.</p>
+            <button class="mi-add" data-add data-id="bruschetta-classica" data-name="Bruschetta Classica" data-price="260" aria-label="Bruschetta Classica sepete ekle">+</button>
+          </div>
+          <div class="menu-item">
+            <div class="mi-title"><h3>Arancini (3 adet)</h3></div>
+            <span class="mi-price">₺290</span>
+            <p class="mi-desc">Safranlı risotto topları; içi ragù ve mozzarella, yanında pomodoro sos.</p>
+            <button class="mi-add" data-add data-id="arancini-3-adet" data-name="Arancini (3 adet)" data-price="290" aria-label="Arancini (3 adet) sepete ekle">+</button>
+          </div>
+          <div class="menu-item">
+            <div class="mi-title"><h3>Frittatina di Pasta</h3><span class="tag new" title="Yeni">Yeni</span></div>
+            <span class="mi-price">₺280</span>
+            <p class="mi-desc">Napoli sokak lezzeti: bechamel ve bezelyeli kızarmış makarna dilimi.</p>
+            <button class="mi-add" data-add data-id="frittatina-di-pasta" data-name="Frittatina di Pasta" data-price="280" aria-label="Frittatina di Pasta sepete ekle">+</button>
+          </div>
+          <div class="menu-item" data-img="assets/img/parmesan.jpg">
+            <div class="mi-title"><h3>Tagliere Rosso</h3></div>
+            <span class="mi-price">₺560</span>
+            <p class="mi-desc">İki kişilik: prosciutto, mortadella, salam, pecorino, zeytin ve focaccia.</p>
+            <button class="mi-add" data-add data-id="tagliere-rosso" data-name="Tagliere Rosso" data-price="560" aria-label="Tagliere Rosso sepete ekle">+</button>
+          </div>
+        </div>
+      </section>
+      <section class="menu-section" id="rosse">
+        <div class="ms-head" data-fade>
+          <span class="ms-num">ii.</span>
+          <h2><small>Domates soslu</small>Pizze Rosse</h2>
+          <p>San Marzano tabanlı klasikler. Tüm pizzalarımız 30 cm, odun ateşinde.</p>
+        </div>
+        <div class="menu-list" data-stagger>
+          <div class="menu-item" data-img="assets/img/pizza-tomatoes.jpg">
+            <div class="mi-title"><h3>Marinara</h3><span class="tag v" title="Vejetaryen">V</span></div>
+            <span class="mi-price">₺340</span>
+            <p class="mi-desc">San Marzano, sarımsak, Sicilya kekiği, zeytinyağı. Peynirsiz, saf klasik.</p>
+            <button class="mi-add" data-add data-id="marinara" data-name="Marinara" data-price="340" aria-label="Marinara sepete ekle">+</button>
+          </div>
+          <div class="menu-item" data-img="assets/img/margherita.jpg">
+            <div class="mi-title"><h3>Margherita</h3><span class="tag v" title="Vejetaryen">V</span></div>
+            <span class="mi-price">₺420</span>
+            <p class="mi-desc">San Marzano, fior di latte, taze fesleğen, sızma zeytinyağı.</p>
+            <button class="mi-add" data-add data-id="margherita" data-name="Margherita" data-price="420" aria-label="Margherita sepete ekle">+</button>
+          </div>
+          <div class="menu-item" data-img="assets/img/pizza-plate.jpg">
+            <div class="mi-title"><h3>Margherita Bufala</h3><span class="tag v" title="Vejetaryen">V</span><span class="tag chef" title="Şefin önerisi">Şef</span></div>
+            <span class="mi-price">₺520</span>
+            <p class="mi-desc">Campania manda mozzarellası, San Marzano, fesleğen, parmesan.</p>
+            <button class="mi-add" data-add data-id="margherita-bufala" data-name="Margherita Bufala" data-price="520" aria-label="Margherita Bufala sepete ekle">+</button>
+          </div>
+          <div class="menu-item" data-img="assets/img/diavola.jpg">
+            <div class="mi-title"><h3>Diavola</h3><span class="tag hot" title="Acılı">🌶</span></div>
+            <span class="mi-price">₺490</span>
+            <p class="mi-desc">Calabria acı salamı, fior di latte, kırmızı biber yağı, bal damlası.</p>
+            <button class="mi-add" data-add data-id="diavola" data-name="Diavola" data-price="490" aria-label="Diavola sepete ekle">+</button>
+          </div>
+          <div class="menu-item" data-img="assets/img/salame-olive.jpg">
+            <div class="mi-title"><h3>Salame e Olive</h3></div>
+            <span class="mi-price">₺480</span>
+            <p class="mi-desc">Napoli salamı, Gaeta zeytini, fior di latte, kekik.</p>
+            <button class="mi-add" data-add data-id="salame-e-olive" data-name="Salame e Olive" data-price="480" aria-label="Salame e Olive sepete ekle">+</button>
+          </div>
+          <div class="menu-item" data-img="assets/img/rustica.jpg">
+            <div class="mi-title"><h3>Capricciosa</h3></div>
+            <span class="mi-price">₺520</span>
+            <p class="mi-desc">Pişmiş jambon, enginar kalbi, mantar, siyah zeytin, fior di latte.</p>
+            <button class="mi-add" data-add data-id="capricciosa" data-name="Capricciosa" data-price="520" aria-label="Capricciosa sepete ekle">+</button>
+          </div>
+          <div class="menu-item" data-img="assets/img/ortolana.jpg">
+            <div class="mi-title"><h3>Ortolana</h3><span class="tag v" title="Vejetaryen">V</span></div>
+            <span class="mi-price">₺460</span>
+            <p class="mi-desc">Közlenmiş mevsim sebzeleri, çeri domates, fesleğen pesto, ricotta.</p>
+            <button class="mi-add" data-add data-id="ortolana" data-name="Ortolana" data-price="460" aria-label="Ortolana sepete ekle">+</button>
+          </div>
+          <div class="menu-item" data-img="assets/img/pizza-steam.jpg">
+            <div class="mi-title"><h3>Nduja e Miele</h3><span class="tag hot" title="Acılı">🌶</span><span class="tag new" title="Yeni">Yeni</span></div>
+            <span class="mi-price">₺540</span>
+            <p class="mi-desc">Sürülebilir acı nduja, füme provola, kestane balı, taze kekik.</p>
+            <button class="mi-add" data-add data-id="nduja-e-miele" data-name="Nduja e Miele" data-price="540" aria-label="Nduja e Miele sepete ekle">+</button>
+          </div>
+        </div>
+      </section>
+      <section class="menu-section" id="bianche">
+        <div class="ms-head" data-fade>
+          <span class="ms-num">iii.</span>
+          <h2><small>Domates sossuz</small>Pizze Bianche</h2>
+          <p>Krema, peynir ve zeytinyağı tabanlı beyaz pizzalar.</p>
+        </div>
+        <div class="menu-list" data-stagger>
+          <div class="menu-item" data-img="assets/img/cheese-wood.jpg">
+            <div class="mi-title"><h3>Quattro Formaggi</h3><span class="tag v" title="Vejetaryen">V</span></div>
+            <span class="mi-price">₺540</span>
+            <p class="mi-desc">Fior di latte, gorgonzola dolce, taleggio, parmigiano reggiano.</p>
+            <button class="mi-add" data-add data-id="quattro-formaggi" data-name="Quattro Formaggi" data-price="540" aria-label="Quattro Formaggi sepete ekle">+</button>
+          </div>
+          <div class="menu-item" data-img="assets/img/pizza-dark.jpg">
+            <div class="mi-title"><h3>Tartufo Nero</h3><span class="tag v" title="Vejetaryen">V</span><span class="tag chef" title="Şefin önerisi">Şef</span></div>
+            <span class="mi-price">₺690</span>
+            <p class="mi-desc">Siyah trüf kreması, orman mantarları, fior di latte, 24 ay parmesan.</p>
+            <button class="mi-add" data-add data-id="tartufo-nero" data-name="Tartufo Nero" data-price="690" aria-label="Tartufo Nero sepete ekle">+</button>
+          </div>
+          <div class="menu-item" data-img="assets/img/verde.jpg">
+            <div class="mi-title"><h3>Mortadella e Pistacchio</h3></div>
+            <span class="mi-price">₺590</span>
+            <p class="mi-desc">Fırından sonra: Bologna mortadellası, Antep fıstığı pesto, burrata.</p>
+            <button class="mi-add" data-add data-id="mortadella-e-pistacchio" data-name="Mortadella e Pistacchio" data-price="590" aria-label="Mortadella e Pistacchio sepete ekle">+</button>
+          </div>
+          <div class="menu-item" data-img="assets/img/pan-pizza.jpg">
+            <div class="mi-title"><h3>Salsiccia e Friarielli</h3><span class="tag hot" title="Acılı">🌶</span></div>
+            <span class="mi-price">₺560</span>
+            <p class="mi-desc">Rezeneli İtalyan sosisi, sarımsaklı acı yeşillik, füme provola.</p>
+            <button class="mi-add" data-add data-id="salsiccia-e-friarielli" data-name="Salsiccia e Friarielli" data-price="560" aria-label="Salsiccia e Friarielli sepete ekle">+</button>
+          </div>
+          <div class="menu-item" data-img="assets/img/verde.jpg">
+            <div class="mi-title"><h3>Verde</h3><span class="tag v" title="Vejetaryen">V</span></div>
+            <span class="mi-price">₺520</span>
+            <p class="mi-desc">Fesleğen pesto, kabak çiçeği, ıspanak, burrata, limon kabuğu.</p>
+            <button class="mi-add" data-add data-id="verde" data-name="Verde" data-price="520" aria-label="Verde sepete ekle">+</button>
+          </div>
+        </div>
+      </section>
+      <section class="menu-section" id="speciali">
+        <div class="ms-head" data-fade>
+          <span class="ms-num">iv.</span>
+          <h2><small>Ustanın imzası</small>Speciali</h2>
+          <p>Sınırlı sayıda hazırlanan, ustamızın imza tarifleri.</p>
+        </div>
+        <div class="menu-list" data-stagger>
+          <div class="menu-item" data-img="assets/img/diavola.jpg">
+            <div class="mi-title"><h3>Rosso Inferno</h3><span class="tag hot" title="Acılı">🌶</span><span class="tag chef" title="Şefin önerisi">Şef</span></div>
+            <span class="mi-price">₺580</span>
+            <p class="mi-desc">Üç çeşit acı biber, nduja, Calabria salamı, füme mozzarella. Cesurlara.</p>
+            <button class="mi-add" data-add data-id="rosso-inferno" data-name="Rosso Inferno" data-price="580" aria-label="Rosso Inferno sepete ekle">+</button>
+          </div>
+          <div class="menu-item" data-img="assets/img/slice-hand.jpg">
+            <div class="mi-title"><h3>Montanara</h3><span class="tag v" title="Vejetaryen">V</span></div>
+            <span class="mi-price">₺480</span>
+            <p class="mi-desc">Önce kızartılan, sonra fırınlanan hamur; pomodoro, parmesan, fesleğen.</p>
+            <button class="mi-add" data-add data-id="montanara" data-name="Montanara" data-price="480" aria-label="Montanara sepete ekle">+</button>
+          </div>
+          <div class="menu-item">
+            <div class="mi-title"><h3>Calzone Fritto</h3></div>
+            <span class="mi-price">₺520</span>
+            <p class="mi-desc">İçi ricotta, salam ve mozzarella dolu, kızartılmış yarım ay.</p>
+            <button class="mi-add" data-add data-id="calzone-fritto" data-name="Calzone Fritto" data-price="520" aria-label="Calzone Fritto sepete ekle">+</button>
+          </div>
+          <div class="menu-item" data-img="assets/img/cheese-pull.jpg">
+            <div class="mi-title"><h3>Pizza della Casa</h3><span class="tag new" title="Yeni">Yeni</span><span class="tag chef" title="Şefin önerisi">Şef</span></div>
+            <span class="mi-price">₺620</span>
+            <p class="mi-desc">Ayın tarifi: mevsimin en iyi malzemeleriyle şefin sürprizi.</p>
+            <button class="mi-add" data-add data-id="pizza-della-casa" data-name="Pizza della Casa" data-price="620" aria-label="Pizza della Casa sepete ekle">+</button>
+          </div>
+        </div>
+      </section>
+      <div class="chef-pick" data-fade>
+        <div class="img-frame" data-speed="0.12"><img src="assets/img/pizza-dark.jpg" alt="Tartufo Nero pizza" loading="lazy"></div>
+        <div class="cp-body">
+          <span class="eyebrow">Şefin Önerisi</span>
+          <h2 class="h-1" data-split>Tartufo <em>Nero</em></h2>
+          <p class="lead">Umbria'dan gelen siyah trüf, odun ateşinde kavrulmuş orman mantarları ve 24 ay olgunlaşmış parmigiano. Sonbaharın en asil pizzası.</p>
+          <div class="sig-foot"><span class="price">₺690</span><button class="add-btn" data-add data-id="tartufo-nero" data-name="Tartufo Nero" data-price="690">Sepete Ekle<i>+</i></button></div>
+        </div>
+      </div>
+      <section class="menu-section" id="pasta">
+        <div class="ms-head" data-fade>
+          <span class="ms-num">v.</span>
+          <h2><small>El yapımı</small>Pasta</h2>
+          <p>Her gün mutfağımızda açılan taze makarnalar.</p>
+        </div>
+        <div class="menu-list" data-stagger>
+          <div class="menu-item" data-img="assets/img/spaghetti.jpg">
+            <div class="mi-title"><h3>Spaghetti al Pomodoro</h3><span class="tag v" title="Vejetaryen">V</span></div>
+            <span class="mi-price">₺380</span>
+            <p class="mi-desc">San Marzano, fesleğen, parmigiano. Sade ve kusursuz.</p>
+            <button class="mi-add" data-add data-id="spaghetti-al-pomodoro" data-name="Spaghetti al Pomodoro" data-price="380" aria-label="Spaghetti al Pomodoro sepete ekle">+</button>
+          </div>
+          <div class="menu-item" data-img="assets/img/shrimp-pasta.jpg">
+            <div class="mi-title"><h3>Linguine ai Gamberi</h3></div>
+            <span class="mi-price">₺560</span>
+            <p class="mi-desc">Karides, çeri domates, sarımsak, acı biber, beyaz şarap.</p>
+            <button class="mi-add" data-add data-id="linguine-ai-gamberi" data-name="Linguine ai Gamberi" data-price="560" aria-label="Linguine ai Gamberi sepete ekle">+</button>
+          </div>
+          <div class="menu-item">
+            <div class="mi-title"><h3>Rigatoni all&#x27;Amatriciana</h3></div>
+            <span class="mi-price">₺440</span>
+            <p class="mi-desc">Guanciale, domates, pecorino romano, karabiber.</p>
+            <button class="mi-add" data-add data-id="rigatoni-all-amatriciana" data-name="Rigatoni all&#x27;Amatriciana" data-price="440" aria-label="Rigatoni all&#x27;Amatriciana sepete ekle">+</button>
+          </div>
+          <div class="menu-item">
+            <div class="mi-title"><h3>Tagliatelle al Tartufo</h3><span class="tag v" title="Vejetaryen">V</span><span class="tag chef" title="Şefin önerisi">Şef</span></div>
+            <span class="mi-price">₺620</span>
+            <p class="mi-desc">Taze tagliatelle, trüf tereyağı, parmesan köpüğü.</p>
+            <button class="mi-add" data-add data-id="tagliatelle-al-tartufo" data-name="Tagliatelle al Tartufo" data-price="620" aria-label="Tagliatelle al Tartufo sepete ekle">+</button>
+          </div>
+        </div>
+      </section>
+      <section class="menu-section" id="insalate">
+        <div class="ms-head" data-fade>
+          <span class="ms-num">vi.</span>
+          <h2><small>Hafif</small>Insalate</h2>
+          <p>Yerel üreticilerden günlük sebze ve yeşillikler.</p>
+        </div>
+        <div class="menu-list" data-stagger>
+          <div class="menu-item" data-img="assets/img/caprese.jpg">
+            <div class="mi-title"><h3>Caprese</h3><span class="tag v" title="Vejetaryen">V</span></div>
+            <span class="mi-price">₺360</span>
+            <p class="mi-desc">Manda mozzarellası, olgun domates, fesleğen, balzamik indirgeme.</p>
+            <button class="mi-add" data-add data-id="caprese" data-name="Caprese" data-price="360" aria-label="Caprese sepete ekle">+</button>
+          </div>
+          <div class="menu-item" data-img="assets/img/salad.jpg">
+            <div class="mi-title"><h3>Rucola e Parmigiano</h3><span class="tag v" title="Vejetaryen">V</span></div>
+            <span class="mi-price">₺320</span>
+            <p class="mi-desc">Roka, parmesan yaprakları, kavrulmuş çam fıstığı, limon sosu.</p>
+            <button class="mi-add" data-add data-id="rucola-e-parmigiano" data-name="Rucola e Parmigiano" data-price="320" aria-label="Rucola e Parmigiano sepete ekle">+</button>
+          </div>
+          <div class="menu-item">
+            <div class="mi-title"><h3>Insalata Rossa</h3><span class="tag v" title="Vejetaryen">V</span><span class="tag new" title="Yeni">Yeni</span></div>
+            <span class="mi-price">₺380</span>
+            <p class="mi-desc">Közlenmiş pancar, kan portakalı, keçi peyniri, ceviz.</p>
+            <button class="mi-add" data-add data-id="insalata-rossa" data-name="Insalata Rossa" data-price="380" aria-label="Insalata Rossa sepete ekle">+</button>
+          </div>
+        </div>
+      </section>
+      <section class="menu-section" id="dolci">
+        <div class="ms-head" data-fade>
+          <span class="ms-num">vii.</span>
+          <h2><small>Tatlılar</small>Dolci</h2>
+          <p>Her gün taze hazırlanan İtalyan tatlıları.</p>
+        </div>
+        <div class="menu-list" data-stagger>
+          <div class="menu-item" data-img="assets/img/tiramisu.jpg">
+            <div class="mi-title"><h3>Tiramisù della Casa</h3><span class="tag v" title="Vejetaryen">V</span><span class="tag chef" title="Şefin önerisi">Şef</span></div>
+            <span class="mi-price">₺280</span>
+            <p class="mi-desc">Mascarpone kreması, espresso ile ıslatılmış savoiardi, kakao.</p>
+            <button class="mi-add" data-add data-id="tiramis-della-casa" data-name="Tiramisù della Casa" data-price="280" aria-label="Tiramisù della Casa sepete ekle">+</button>
+          </div>
+          <div class="menu-item">
+            <div class="mi-title"><h3>Babà al Rum</h3><span class="tag v" title="Vejetaryen">V</span></div>
+            <span class="mi-price">₺290</span>
+            <p class="mi-desc">Romlu şurupla ıslatılmış Napoli keki, chantilly krema.</p>
+            <button class="mi-add" data-add data-id="bab-al-rum" data-name="Babà al Rum" data-price="290" aria-label="Babà al Rum sepete ekle">+</button>
+          </div>
+          <div class="menu-item" data-img="assets/img/dessert.jpg">
+            <div class="mi-title"><h3>Pizzetta alla Nutella</h3><span class="tag v" title="Vejetaryen">V</span></div>
+            <span class="mi-price">₺320</span>
+            <p class="mi-desc">Fırından çıkan küçük pizza, Nutella, fındık, pudra şekeri.</p>
+            <button class="mi-add" data-add data-id="pizzetta-alla-nutella" data-name="Pizzetta alla Nutella" data-price="320" aria-label="Pizzetta alla Nutella sepete ekle">+</button>
+          </div>
+          <div class="menu-item" data-img="assets/img/gelato.jpg">
+            <div class="mi-title"><h3>Gelato Artigianale</h3><span class="tag v" title="Vejetaryen">V</span></div>
+            <span class="mi-price">₺220</span>
+            <p class="mi-desc">İki top: pistacchio, fior di latte, cioccolato veya stracciatella.</p>
+            <button class="mi-add" data-add data-id="gelato-artigianale" data-name="Gelato Artigianale" data-price="220" aria-label="Gelato Artigianale sepete ekle">+</button>
+          </div>
+          <div class="menu-item">
+            <div class="mi-title"><h3>Cannoli Siciliani</h3><span class="tag v" title="Vejetaryen">V</span></div>
+            <span class="mi-price">₺260</span>
+            <p class="mi-desc">Çıtır kabuk, ricotta kreması, Antep fıstığı, portakal kabuğu.</p>
+            <button class="mi-add" data-add data-id="cannoli-siciliani" data-name="Cannoli Siciliani" data-price="260" aria-label="Cannoli Siciliani sepete ekle">+</button>
+          </div>
+        </div>
+      </section>
+      <section class="menu-section" id="bevande">
+        <div class="ms-head" data-fade>
+          <span class="ms-num">viii.</span>
+          <h2><small>İçecekler</small>Bevande</h2>
+          <p>İtalyan şarapları, klasik kokteyller ve ev yapımı limonata.</p>
+        </div>
+        <div class="menu-list" data-stagger>
+          <div class="menu-item" data-img="assets/img/cocktail-dark.jpg">
+            <div class="mi-title"><h3>Negroni</h3></div>
+            <span class="mi-price">₺420</span>
+            <p class="mi-desc">Gin, Campari, vermut rosso, portakal kabuğu.</p>
+            <button class="mi-add" data-add data-id="negroni" data-name="Negroni" data-price="420" aria-label="Negroni sepete ekle">+</button>
+          </div>
+          <div class="menu-item" data-img="assets/img/cocktail.jpg">
+            <div class="mi-title"><h3>Aperol Spritz</h3></div>
+            <span class="mi-price">₺390</span>
+            <p class="mi-desc">Aperol, prosecco, soda, portakal dilimi.</p>
+            <button class="mi-add" data-add data-id="aperol-spritz" data-name="Aperol Spritz" data-price="390" aria-label="Aperol Spritz sepete ekle">+</button>
+          </div>
+          <div class="menu-item" data-img="assets/img/wine.jpg">
+            <div class="mi-title"><h3>Kadeh Şarap</h3></div>
+            <span class="mi-price">₺340</span>
+            <p class="mi-desc">Aglianico, Primitivo veya Falanghina — sommelier önerisiyle.</p>
+            <button class="mi-add" data-add data-id="kadeh-sarap" data-name="Kadeh Şarap" data-price="340" aria-label="Kadeh Şarap sepete ekle">+</button>
+          </div>
+          <div class="menu-item">
+            <div class="mi-title"><h3>Peroni Nastro Azzurro</h3></div>
+            <span class="mi-price">₺220</span>
+            <p class="mi-desc">33 cl İtalyan lageri.</p>
+            <button class="mi-add" data-add data-id="peroni-nastro-azzurro" data-name="Peroni Nastro Azzurro" data-price="220" aria-label="Peroni Nastro Azzurro sepete ekle">+</button>
+          </div>
+          <div class="menu-item">
+            <div class="mi-title"><h3>Limonata della Casa</h3><span class="tag v" title="Vejetaryen">V</span></div>
+            <span class="mi-price">₺140</span>
+            <p class="mi-desc">Ev yapımı, taze nane ve Amalfi limonu.</p>
+            <button class="mi-add" data-add data-id="limonata-della-casa" data-name="Limonata della Casa" data-price="140" aria-label="Limonata della Casa sepete ekle">+</button>
+          </div>
+          <div class="menu-item">
+            <div class="mi-title"><h3>Espresso / Doppio</h3><span class="tag v" title="Vejetaryen">V</span></div>
+            <span class="mi-price">₺90</span>
+            <p class="mi-desc">Napoli kavrumu, kalın crema.</p>
+            <button class="mi-add" data-add data-id="espresso-doppio" data-name="Espresso / Doppio" data-price="90" aria-label="Espresso / Doppio sepete ekle">+</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="menu-note" data-fade>
+        <strong>Alerjen bilgisi</strong>
+        <p>Ürünlerimiz gluten, süt ürünleri, yumurta, kuruyemiş ve deniz ürünleri içerebilir. Glutensiz hamur seçeneğimiz (+₺80) mevcuttur ancak aynı fırında pişirildiği için çapraz bulaşma riski vardır. Lütfen alerjinizi siparişten önce ekibimize bildirin. Fiyatlara KDV dahildir.</p>
+      </div>
+    </div>
+
+    <section class="reserve-cta" style="margin-top: clamp(90px, 12vw, 160px)">
+      <canvas class="fire" data-fire="cta"></canvas>
+      <canvas class="embers" data-embers></canvas>
+      <div class="container">
+        <span class="eyebrow center" data-fade>Karar verdiniz mi?</span>
+        <h2 class="h-display" data-split>Masanız <em>hazır</em></h2>
+        <p class="lead" data-fade>Sepetinizi WhatsApp'tan gönderin ya da fırının karşısında bir masa ayırtın.</p>
+        <div class="actions" data-fade>
+          <button class="btn" data-cart-open data-magnetic><span class="btn-text" data-text="Sepeti Gör"><span>Sepeti Gör</span></span></button>
+          <a href="rezervasyon.html" class="btn btn-outline" data-magnetic><span class="btn-text" data-text="Masa Ayırt"><span>Masa Ayırt</span></span></a>
+        </div>
+      </div>
+    </section>
+
+    <div class="hover-preview" aria-hidden="true"></div>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="f-about">
+          <a href="index.html" class="logo"><span class="logo-mark">ROSS<b>O</b></span><span class="logo-sub" lang="it">Pizzeria Napoletana</span></a>
+          <p>Napoli'nin dar sokaklarından Kadıköy'e uzanan bir ateş hikayesi. 2012'den beri, her gün, aynı tutkuyla.</p>
+          <div class="socials">
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+            <a href="#" aria-label="WhatsApp" data-wa-link><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.8L4 20Z"/><path d="M9 9.5c.5 2 2.5 4 4.5 4.5l1-1.2 1.8.8c-.2 1.3-1.2 2-2.3 1.9C11 15.2 8.8 13 8.5 10.2 8.4 9.1 9.1 8.1 10.4 7.9l.8 1.8L10 10.7"/></svg></a>
+            <a href="tel:+902160000000" aria-label="Telefon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h5>Keşfet</h5>
+          <ul>
+            <li><a href="menu.html">Menü</a></li>
+            <li><a href="hikayemiz.html">Hikayemiz</a></li>
+            <li><a href="rezervasyon.html">Rezervasyon</a></li>
+            <li><a href="rezervasyon.html#ozel-davet">Özel Davetler</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Ziyaret</h5>
+          <ul>
+            <li>Moda Cad. No:12<br>Kadıköy / İstanbul</li>
+            <li><a href="tel:+902160000000">0216 000 00 00</a></li>
+            <li><a href="mailto:merhaba@rossopizzeria.com">merhaba@rossopizzeria.com</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Saatler</h5>
+          <ul class="f-hours">
+            <li><span>Pzt – Per</span><span>12:00 – 23:00</span></li>
+            <li><span>Cum – Cmt</span><span>12:00 – 00:30</span></li>
+            <li><span>Pazar</span><span>12:00 – 23:00</span></li>
+          </ul>
+          <h5 style="margin-top: 34px">Bülten</h5>
+          <form class="newsletter" data-newsletter>
+            <input type="email" placeholder="E-posta adresiniz" required aria-label="E-posta adresiniz">
+            <button type="submit">Katıl</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="footer-word" aria-hidden="true">ROSSO</div>
+    <div class="container">
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> Rosso Pizzeria Napoletana. Tüm hakları saklıdır.</span>
+        <span>Ateşle ve sevgiyle yapıldı.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

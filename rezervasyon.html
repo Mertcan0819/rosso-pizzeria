@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rezervasyon — ROSSO Pizzeria Napoletana</title>
+  <meta name="description" content="ROSSO Pizzeria Napoletana için online masa rezervasyonu, çalışma saatleri, adres ve iletişim bilgileri.">
+  <meta name="theme-color" content="#0a0808">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a0808'/%3E%3Ctext x='32' y='46' font-family='Georgia,serif' font-size='42' text-anchor='middle' fill='%23a8161d'%3ER%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body data-page="reserve">
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"><span></span></div>
+
+  <div class="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <div class="loader-logo"><span>R</span><span>O</span><span>S</span><span>S</span><span>O</span></div>
+      <div class="loader-sub" lang="it">Pizzeria Napoletana</div>
+      <div class="loader-line"><i></i></div>
+    </div>
+    <div class="loader-count">0</div>
+  </div>
+
+  <div class="transition" aria-hidden="true">
+    <div class="t-layer t-red"></div>
+    <div class="t-layer t-black"><span class="t-logo">ROSSO</span></div>
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="ROSSO ana sayfa">
+        <span class="logo-mark">ROSS<b>O</b></span>
+        <span class="logo-sub" lang="it">Pizzeria Napoletana</span>
+      </a>
+      <nav class="nav" aria-label="Ana menü">
+        <a href="index.html">Ana Sayfa</a>
+        <a href="menu.html">Menü</a>
+        <a href="hikayemiz.html">Hikayemiz</a>
+        <a href="rezervasyon.html" class="is-current">Rezervasyon</a>
+      </nav>
+      <div class="header-actions">
+        <span class="status" data-status><i></i><em>—</em></span>
+        <button class="cart-btn" data-cart-open aria-label="Sepeti aç" data-magnetic>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+          <span class="cart-count">0</span>
+        </button>
+        <a href="rezervasyon.html" class="btn btn-sm" data-magnetic><span class="btn-text" data-text="Masa Ayırt"><span>Masa Ayırt</span></span></a>
+        <button class="menu-toggle" aria-label="Menüyü aç"><i></i><i></i></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu">
+    <nav class="mm-links">
+      <a href="index.html"><span>Ana Sayfa</span><small>01</small></a>
+      <a href="menu.html"><span>Menü</span><small>02</small></a>
+      <a href="hikayemiz.html"><span>Hikayemiz</span><small>03</small></a>
+      <a href="rezervasyon.html"><span>Rezervasyon</span><small>04</small></a>
+    </nav>
+    <div class="mm-foot">
+      <span>Moda Cad. No:12, Kadıköy</span>
+      <a href="tel:+902160000000">0216 000 00 00</a>
+    </div>
+  </div>
+
+  <!-- ============ SEPET ============ -->
+  <aside class="cart-drawer" aria-label="Sepet">
+    <div class="cd-backdrop" data-cart-close></div>
+    <div class="cd-panel">
+      <div class="cd-head">
+        <h3>Sepetiniz</h3>
+        <button class="cd-close" data-cart-close aria-label="Sepeti kapat">✕</button>
+      </div>
+      <div class="cd-items" data-lenis-prevent></div>
+      <div class="cd-foot">
+        <div class="cd-total"><span>Toplam</span><strong data-cart-total>₺0</strong></div>
+        <p class="cd-note">Kadıköy, Moda ve Fenerbahçe'ye 35 dakikada sıcak teslimat.</p>
+        <a href="#" class="btn" data-cart-checkout target="_blank" rel="noopener"><span class="btn-text" data-text="WhatsApp ile Sipariş"><span>WhatsApp ile Sipariş</span></span></a>
+      </div>
+    </div>
+  </aside>
+  <div class="toast" role="status" aria-live="polite"></div>
+
+    <main>
+    <section class="page-hero">
+      <div class="ph-media" data-parallax-bg><img src="assets/img/interior.jpg" alt="Restoran salonu"></div>
+      <div class="ph-content container">
+        <nav class="breadcrumb hero-anim"><a href="index.html">Ana Sayfa</a><span>/</span>Rezervasyon</nav>
+        <h1 class="h-display" data-hero-split><span class="line">Masanız</span><span class="line"><em>ateşin</em> karşısında</span></h1>
+        <p class="lead hero-anim">Rezervasyonunuzu birkaç saniyede oluşturun; ekibimiz en kısa sürede onaylasın.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container reserve-grid">
+        <div class="r-card" data-fade>
+          <span class="eyebrow">Rezervasyon Formu</span>
+          <h2 class="h-2">Bir masa <em>ayırtın</em></h2>
+          <p class="muted">8 kişiden kalabalık gruplar için lütfen bizi arayın.</p>
+
+          <form class="r-form" data-reserve novalidate>
+            <div class="field">
+              <label for="r-name">Ad Soyad</label>
+              <input id="r-name" name="name" type="text" autocomplete="name" required>
+              <span class="err">Lütfen adınızı yazın</span>
+            </div>
+            <div class="field">
+              <label for="r-phone">Telefon</label>
+              <input id="r-phone" name="phone" type="tel" autocomplete="tel" placeholder="05xx xxx xx xx" required>
+              <span class="err">Geçerli bir numara girin</span>
+            </div>
+            <div class="field">
+              <label for="r-date">Tarih</label>
+              <input id="r-date" name="date" type="date" required>
+              <span class="err">Bir tarih seçin</span>
+            </div>
+            <div class="field">
+              <label for="r-time">Saat</label>
+              <select id="r-time" name="time" required><option>12:00</option><option>12:30</option><option>13:00</option><option>13:30</option><option>14:00</option><option>14:30</option><option>15:00</option><option>15:30</option><option>16:00</option><option>16:30</option><option>17:00</option><option>17:30</option><option>18:00</option><option>18:30</option><option>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option><option>21:30</option><option>22:00</option><option>22:30</option><option>23:00</option><option>23:30</option></select>
+            </div>
+            <div class="field full">
+              <label>Kişi sayısı</label>
+              <div class="guests-picker"><button type="button" data-guests="1">1</button><button type="button" data-guests="2" class="is-active">2</button><button type="button" data-guests="3">3</button><button type="button" data-guests="4">4</button><button type="button" data-guests="5">5</button><button type="button" data-guests="6">6</button><button type="button" data-guests="7">7</button><button type="button" data-guests="8">8+</button></div>
+            </div>
+            <div class="field full">
+              <label for="r-area">Oturma tercihi</label>
+              <select id="r-area" name="area">
+                <option>Fark etmez</option>
+                <option>Fırının karşısı (Şefin masası)</option>
+                <option>Salon</option>
+                <option>Teras</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="r-note">Not (isteğe bağlı)</label>
+              <textarea id="r-note" name="note" placeholder="Doğum günü, alerji, mama sandalyesi..."></textarea>
+            </div>
+            <div class="r-submit">
+              <small>Gönderdiğinizde talebiniz WhatsApp üzerinden ekibimize iletilir ve 15 dakika içinde onaylanır.</small>
+              <button type="submit" class="btn" data-magnetic><span class="btn-text" data-text="Rezervasyonu Gönder"><span>Rezervasyonu Gönder</span></span></button>
+            </div>
+          </form>
+
+          <div class="r-success" aria-live="polite">
+            <svg viewBox="0 0 90 90"><circle cx="45" cy="45" r="43"/><path d="M28 46l11 11 23-24"/></svg>
+            <span class="eyebrow center">Talebiniz hazır</span>
+            <h3 class="h-2" style="margin-top: 16px">Grazie, <em data-r-name></em></h3>
+            <p data-r-summary></p>
+            <div class="actions">
+              <a href="#" class="btn" data-r-wa target="_blank" rel="noopener"><span class="btn-text" data-text="WhatsApp'ta Gönder"><span>WhatsApp'ta Gönder</span></span></a>
+              <button type="button" class="btn btn-outline" data-r-reset><span class="btn-text" data-text="Yeni Rezervasyon"><span>Yeni Rezervasyon</span></span></button>
+            </div>
+          </div>
+        </div>
+
+        <aside class="r-aside">
+          <div class="info-block" data-fade>
+            <h4>Çalışma Saatleri <span class="status" data-status><i></i><em>—</em></span></h4>
+            <ul class="hours" data-hours>
+              <li data-day="1"><span>Pazartesi</span><span>12:00 – 23:00</span></li>
+              <li data-day="2"><span>Salı</span><span>12:00 – 23:00</span></li>
+              <li data-day="3"><span>Çarşamba</span><span>12:00 – 23:00</span></li>
+              <li data-day="4"><span>Perşembe</span><span>12:00 – 23:00</span></li>
+              <li data-day="5"><span>Cuma</span><span>12:00 – 00:30</span></li>
+              <li data-day="6"><span>Cumartesi</span><span>12:00 – 00:30</span></li>
+              <li data-day="0"><span>Pazar</span><span>12:00 – 23:00</span></li>
+            </ul>
+          </div>
+          <div class="info-block" data-fade>
+            <h4>İletişim</h4>
+            <div class="contact-lines">
+              <a href="tel:+902160000000"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span><small>Telefon</small>0216 000 00 00</span></a>
+              <a href="#" data-wa-link target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.8L4 20Z"/></svg><span><small>WhatsApp</small>0500 000 00 00</span></a>
+              <a href="mailto:merhaba@rossopizzeria.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 6 9 7 9-7"/></svg><span><small>E-posta</small>merhaba@rossopizzeria.com</span></a>
+              <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg><span><small>Adres</small>Moda Cad. No:12, Kadıköy / İstanbul</span></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="map-wrap" data-fade>
+      <iframe title="Rosso konumu" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://maps.google.com/maps?q=Moda%20Caddesi%2C%20Kad%C4%B1k%C3%B6y%2C%20%C4%B0stanbul&z=15&output=embed"></iframe>
+      <div class="map-card">
+        <span class="eyebrow">Bizi Bulun</span>
+        <h3>Moda, Kadıköy</h3>
+        <p>Moda Cad. No:12 — Kadıköy iskelesine 8 dakika yürüme mesafesinde. Vale hizmeti akşam 18:00'den sonra.</p>
+        <a href="https://maps.google.com/?q=Moda+Caddesi+Kad%C4%B1k%C3%B6y" target="_blank" rel="noopener" class="link-line">Yol tarifi al →</a>
+      </div>
+    </section>
+
+    <section class="section" id="ozel-davet">
+      <div class="container events-grid">
+        <div class="img-frame" data-reveal data-speed="0.12"><img src="assets/img/guests.jpg" alt="Kalabalık bir masada misafirler" loading="lazy"></div>
+        <div>
+          <span class="eyebrow" data-fade>Özel Davetler</span>
+          <h2 class="h-1" data-split style="margin-top: 22px">Kutlamanız <em>bizden</em></h2>
+          <p class="lead" data-fade style="margin-top: 24px">Doğum günleri, şirket yemekleri, nişanlar... 40 kişiye kadar özel salonumuz ve size özel hazırlanan menülerle.</p>
+          <ul class="events-list" data-stagger>
+            <li>Pizza ustalık sınıfı: kendi pizzanızı fırına verin</li>
+            <li>Kişiye özel 4 veya 6 servisli tadım menüsü</li>
+            <li>Sommelier eşliğinde İtalyan şarap eşleştirmesi</li>
+            <li>Salonun tamamı için kapalı rezervasyon</li>
+          </ul>
+          <a href="mailto:etkinlik@rossopizzeria.com" class="btn" data-magnetic data-fade><span class="btn-text" data-text="Teklif İste"><span>Teklif İste</span></span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 0">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow center" data-fade>Sıkça Sorulanlar</span>
+          <h2 class="h-1" data-split>Merak <em>edilenler</em></h2>
+        </div>
+        <div class="faq-list" data-stagger>
+          <div class="faq-item"><button class="faq-q">Rezervasyonsuz gelebilir miyim?<i></i></button><div class="faq-a"><p>Elbette. Salonumuzun bir bölümünü her akşam rezervasyonsuz misafirlerimize ayırıyoruz. Ancak hafta sonu akşamları beklemek istemiyorsanız rezervasyon öneririz.</p></div></div>
+          <div class="faq-item"><button class="faq-q">Glutensiz veya vegan seçeneğiniz var mı?<i></i></button><div class="faq-a"><p>Glutensiz hamurumuz (+₺80) ve vegan mozzarella seçeneğimiz mevcuttur. Aynı fırını kullandığımız için çölyak hastalarımızı çapraz bulaşma konusunda bilgilendirmek isteriz.</p></div></div>
+          <div class="faq-item"><button class="faq-q">Paket servis ve teslimat yapıyor musunuz?<i></i></button><div class="faq-a"><p>Evet. Kadıköy, Moda, Fenerbahçe ve Göztepe'ye yaklaşık 35 dakikada teslimat yapıyoruz. Menüden sepetinizi oluşturup WhatsApp ile sipariş verebilirsiniz.</p></div></div>
+          <div class="faq-item"><button class="faq-q">Evcil hayvan kabul ediyor musunuz?<i></i></button><div class="faq-a"><p>Teras alanımızda dostlarımızı ağırlamaktan mutluluk duyarız; su kabı bizden.</p></div></div>
+          <div class="faq-item"><button class="faq-q">Rezervasyonumu nasıl iptal ederim?<i></i></button><div class="faq-a"><p>Rezervasyon saatinizden en az 2 saat önce telefon veya WhatsApp üzerinden bize haber vermeniz yeterli.</p></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="f-about">
+          <a href="index.html" class="logo"><span class="logo-mark">ROSS<b>O</b></span><span class="logo-sub" lang="it">Pizzeria Napoletana</span></a>
+          <p>Napoli'nin dar sokaklarından Kadıköy'e uzanan bir ateş hikayesi. 2012'den beri, her gün, aynı tutkuyla.</p>
+          <div class="socials">
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+            <a href="#" aria-label="WhatsApp" data-wa-link><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.8L4 20Z"/><path d="M9 9.5c.5 2 2.5 4 4.5 4.5l1-1.2 1.8.8c-.2 1.3-1.2 2-2.3 1.9C11 15.2 8.8 13 8.5 10.2 8.4 9.1 9.1 8.1 10.4 7.9l.8 1.8L10 10.7"/></svg></a>
+            <a href="tel:+902160000000" aria-label="Telefon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h5>Keşfet</h5>
+          <ul>
+            <li><a href="menu.html">Menü</a></li>
+            <li><a href="hikayemiz.html">Hikayemiz</a></li>
+            <li><a href="rezervasyon.html">Rezervasyon</a></li>
+            <li><a href="rezervasyon.html#ozel-davet">Özel Davetler</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Ziyaret</h5>
+          <ul>
+            <li>Moda Cad. No:12<br>Kadıköy / İstanbul</li>
+            <li><a href="tel:+902160000000">0216 000 00 00</a></li>
+            <li><a href="mailto:merhaba@rossopizzeria.com">merhaba@rossopizzeria.com</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Saatler</h5>
+          <ul class="f-hours">
+            <li><span>Pzt – Per</span><span>12:00 – 23:00</span></li>
+            <li><span>Cum – Cmt</span><span>12:00 – 00:30</span></li>
+            <li><span>Pazar</span><span>12:00 – 23:00</span></li>
+          </ul>
+          <h5 style="margin-top: 34px">Bülten</h5>
+          <form class="newsletter" data-newsletter>
+            <input type="email" placeholder="E-posta adresiniz" required aria-label="E-posta adresiniz">
+            <button type="submit">Katıl</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="footer-word" aria-hidden="true">ROSSO</div>
+    <div class="container">
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> Rosso Pizzeria Napoletana. Tüm hakları saklıdır.</span>
+        <span>Ateşle ve sevgiyle yapıldı.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
